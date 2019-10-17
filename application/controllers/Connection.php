@@ -23,34 +23,13 @@ class Connection extends CI_Controller {
 	
 	//Show login page
 	public function index()
-	{//Load form helper library
-                $this->load->helper('form');
-$this->load->helper('url');
-                //Load form validation library
-                $this->load->library('form_validation');
-
-                //Load Session library
-                $this->load->library('session');
-
-                //Load database
-       //         $this->load->model('login_database');
-
+	{             $this->load->library('form_validation');
 		 $this->load->view("login_form");
 
 	}
 
 // Validate and store registration data in database
 public function new_user_registration() {
-//Load form helper library
-                $this->load->helper('form');
-$this->load->helper('url');
-
-                //Load form validation library
-                $this->load->library('form_validation');
-
-                //Load Session library
-                $this->load->library('session');
-
                 //Load database
                 $this->load->model('login_database');
 
@@ -79,17 +58,7 @@ $this->load->view('registration_form', $data);
 
 // Check for user login process
 public function user_login_process() {
-//Load form helper library
-                $this->load->helper('form');
-$this->load->helper('url');
-
-                //Load form validation library
-                $this->load->library('form_validation');
-
-                //Load Session library
-                $this->load->library('session');
-
-                //Load database
+               //Load database
                 $this->load->model('login_database');
 
 $this->form_validation->set_rules('login', 'Username', 'trim|required');
@@ -132,7 +101,6 @@ $this->load->view('login_form', $data);
 
 // Logout from admin page
 public function logout() {
-$this->load->helper('url');
 
 // Removing session data
 $sess_array = array(

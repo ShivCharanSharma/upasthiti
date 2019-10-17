@@ -52,6 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['Session/index'] = 'session';
 $route['connection/index'] = 'connection/index';
+$route['connection/user_login_process']='connection/user_login_process';
 $route['connection/user_registration_show']='connection/user_registration_show';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['default_controller'] = 'connection/index';
+
