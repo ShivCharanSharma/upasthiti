@@ -58,8 +58,8 @@ $this->load->view('registration_form', $data);
 
 // Check for user login process
 public function user_login_process() {
-               //Load database
-                $this->load->model('login_database');
+//Load database
+$this->load->model('login_database');
 
 $this->form_validation->set_rules('login', 'Username', 'trim|required');
 $this->form_validation->set_rules('password', 'Password', 'trim|required');

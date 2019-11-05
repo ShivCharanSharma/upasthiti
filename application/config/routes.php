@@ -57,4 +57,6 @@ $route['connection/user_registration_show']='connection/user_registration_show';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['default_controller'] = 'connection/index';
+$route['students/create'] = 'students/create';
+$route['students/success'] = 'students/success';
 
