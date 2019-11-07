@@ -50,9 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
  */
 
+$route['home'] = 'attendance/index';
+$route['attendance'] = 'attendance/throughVedio';
 $route['Session/index'] = 'session';
+$route['welcome'] = 'welcome/index';
 $route['connection/index'] = 'connection/index';
 $route['connection/user_login_process']='connection/user_login_process';
+$route['connection/login']='connection/login';
 $route['connection/user_registration_show']='connection/user_registration_show';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

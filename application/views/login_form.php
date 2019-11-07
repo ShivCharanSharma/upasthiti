@@ -2,7 +2,7 @@
 <?php
 if (isset($this->session->userdata['logged_in'])) {
 
-header("location: http://localhost//Information-Management-System/index.php/connection/user_login_process");
+header("location: http://localhost//upasthiti/index.php/connection/login");
 }
 ?>
 <head>
@@ -29,7 +29,7 @@ echo "</div>";
 <div id="login">
 <h2>Login Form</h2>
 <hr/>
-<?php echo form_open('index.php/connection/user_login_process'); ?>
+<?php echo form_open('index.php/connection/login'); ?>
 <?php
 echo "<div class='error_msg'>";
 if (isset($error_message)) {
