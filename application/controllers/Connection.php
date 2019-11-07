@@ -57,16 +57,23 @@ $this->load->view('registration_form', $data);
 }
 
 // Check for user login process
-public function user_login_process() {
+public function login() {
                //Load database
                 $this->load->model('login_database');
+    $this->load->library('form_validation');
+if(isset($this->session->userdata['logged_in'])){
+	redirect("/home");
+	//$this->load->view('admin_page');
+}
+//		$this->load->view("login_form");
 
 $this->form_validation->set_rules('login', 'Username', 'trim|required');
 $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 if ($this->form_validation->run() == FALSE) {
 if(isset($this->session->userdata['logged_in'])){
-$this->load->view('admin_page');
+	redirect("/home");
+	//$this->load->view('admin_page');
 }else{
 $this->load->view('login_form');
 }
@@ -88,7 +95,8 @@ $session_data = array(
 );
 // Add user data in session
 $this->session->set_userdata('logged_in', $session_data);
-$this->load->view('admin_page');
+	redirect("/home");
+	//$this->load->view('admin_page');
 }
 } else {
 $data = array(
