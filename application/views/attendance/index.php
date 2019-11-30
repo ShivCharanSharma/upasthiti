@@ -8,7 +8,7 @@
   <script defer src="js/face-api.min.js"></script>
   <script defer src="js/script.js"></script>
   <style>
-    body {
+   html, body {
       margin: 0;
       padding: 0;
       width: 100vw;
@@ -17,13 +17,35 @@
       justify-content: center;
       align-items: center;
     }
-
-    canvas {
-      position: absolute;
+	
+    canvas ,#video  {
+      position: fixed;
+	height:100%;
+	width:100%;
+	object-fit:cover;
     }
+	#submit{
+	width:200px;
+	background-color: black;
+    	color: white;
+   	font-size: 16px;
+    	border-radius: 30px;
+    	border: none;
+    	padding: 15px 20px;
+    	text-align: center;
+    	box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    	position: fixed;
+    	bottom: 30px;
+    	left: calc(50% - 100px);
+
+	}
   </style>
 </head>
 <body>
-  <video id="video" width="760" height="540" autoplay muted ></video>
+<!--<main id="camera">-->
+
+  <video id="video" width="100%" height="100%"  autoplay muted autoinline ></video>
+  <button id="submit">Submit</button>
+<!--</main>-->
 </body>
 </html>
