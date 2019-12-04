@@ -5,6 +5,7 @@ if (isset($this->session->userdata['logged_in'])) {
 header("location: http://localhost//upasthiti/index.php/connection/login");
 }
 ?>
+	<link rel="shortcut icon" href="">
 <head>
 <title>Login Form</title>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/style.css">
