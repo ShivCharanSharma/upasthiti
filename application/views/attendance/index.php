@@ -37,6 +37,7 @@
     	position: fixed;
     	bottom: 30px;
     	left: calc(50% - 100px);
+      z-index: 3;
 
 	}
   </style>

@@ -19,5 +19,15 @@ class Attendance extends CI_Controller {
 	{
 		//$data['data']=$this->users_model->getUserDetail();
 		$this->load->view('attendance/index');
+	}
+	    public function report()
+        {
+                $data['data']=$this->input->post('x');
+                //file_put_contents('php://stderr', var_dump($data['data']));
+               $data['data']=json_decode($data['data'],true);
+                $this->load->view('test',$data);
+              // return json_encode($data['data']);
         }
+
 }
+

@@ -18,13 +18,14 @@ function startVideo() {
 
 const labels = ['shiv'/*'Black Widow', 'Captain America', 'Captain Marvel', 'Hawkeye', 'Jim Rhodes', 'Thor', 'Tony Stark'*/]
 
-let attendance=[];
+let attendance={};
 labels.map( label => {
 	attendance[label]=0;/*.push({ 'rollNo':label, 'weight':0});*/
 });
 console.log(attendance);
-
+flag=true;
 video.addEventListener('play',async () => {
+	if(flag == true){
 	const labeledFaceDescriptors =await  loadLabeledImages()
 	console.log(labeledFaceDescriptors);
 	const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
@@ -35,6 +36,7 @@ video.addEventListener('play',async () => {
 	const displaySize = { width: video.width, height: video.height }
 	faceapi.matchDimensions(canvas, displaySize)
 	setInterval(async () => {
+		if(flag==true){
 		const detections = await faceapi.detectAllFaces(video/*, new faceapi.TinyFaceDetectorOptions()*/).withFaceLandmarks().withFaceDescriptors()/*.withFaceExpressions()*/
 		const resizedDetections = faceapi.resizeResults(detections, displaySize)
 		canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
@@ -54,11 +56,16 @@ video.addEventListener('play',async () => {
 			const box = resizedDetections[i].detection.box
 			const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
 			drawBox.draw(canvas)
+		
 		})
+	}
+
+
 		/*   faceapi.draw.drawDetections(canvas, resizedDetections)
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)*/
 	}, 50)
+}
 })
 
 function loadLabeledImages() {
@@ -80,17 +87,45 @@ function loadLabeledImages() {
 var submitBtn = document.getElementById("submit");
 submitBtn.addEventListener('click',function(event){
 
-	var vedio= document.getElementById('video');
+	var vedio= document.getElementById("video");
+	console.log(vedio);
 	vedio.pause();
-	document.removeEventListener
-	document.body.removeChild(vedio);
+	flag=false;
+	//document.removeEventListener
+	//document.body.removeChild(vedio);
 	var table =document.createElement('table');
 	var tableContent="<tr><th> Name of present Student</th></tr>";
-	attendance.forEach((weight,name)=>{
+	Object.entries(attendance).forEach(([name,weight])=>{
 		if(weight>0){
 			tableContent +="<tr><td>"+name+"</td></tr>";
 		}
 	});
 	table.innerHTML=tableContent;
-	document.body.addChild(table);
+//	document.body.addChild(table);
+
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	console.log(attendance);
+     console.log("success"+this.responseText);
+     document.write(this.responseText);
+     //document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "attendance/report", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  var dataToSend=JSON.stringify(attendance)
+  console.log(dataToSend + typeof("x" + dataToSend));
+  xhttp.send("x="+dataToSend);
+
+     // $.ajax({
+     //        url: "<?php echo base_url('attendance/report');?>",
+     //        type: 'POST',
+     //        data: attendance,
+     //        success: function(msg)
+     //        {
+		   //  console.log("success");
+     //        }
+     //    });
+     //   // return false;
 })
